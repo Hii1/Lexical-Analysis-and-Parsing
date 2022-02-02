@@ -1,0 +1,31 @@
+<function> ::= <stmt> {<stmt>}
+
+<stmt> ::= ;
+        | <expr> ;
+        | <expr> = <expr> ;
+        | PRINT <expr> ;
+        | WHILE ( <expr> ) stmt
+        | IF (<expr>) stmt [ELSE <stmt>]
+        | {<stmt_list>}
+        | BREAK ;
+        | XXEXIT ;
+
+<stmt_list> ::= <stmt> {<stmt>}
+
+<expr> ::= <x1term> {(== | != | < | > | <= | >=) <x1term>}
+
+<x1term> ::= <x2expr> {(OR | AND) <x2expr>}
+
+<x2term> ::= <x3expr> {(+ | -) <x3expr>}
+
+<x3term> ::= <factor> {(* | /) <factor>}
+
+<factor> ::=  DATA_TYPE IDENTIFIER
+            | IDENTIFIER
+            | <VVALUE>
+            | (<expr>)
+
+<VVALUE> ::= INTEGER_VALUE
+            | FLOAT_VALUE
+            | CHARACTER_VALUE
+            | STRING_VALUE
